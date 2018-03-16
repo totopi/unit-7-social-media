@@ -1,26 +1,3 @@
-
-# coding: utf-8
-
-# 
-# The bot receives tweets via mentions and in turn performs sentiment analysis on the most recent twitter account specified in the mention
-# 
-# For example, when a user tweets, "@PlotBot Analyze: @CNN," it will trigger a sentiment analysis on the CNN twitter feed.
-# 
-# A plot from the sentiment analysis is then tweeted to the PlotBot5 twitter feed.
-# 
-# Hints, requirements, and considerations:
-# 
-# Your bot should scan your account every five minutes for mentions.
-# Your bot should pull 500 most recent tweets to analyze for each incoming request.
-# Your script should prevent abuse by analyzing only Twitter accounts that have not previously been analyzed.
-# Your plot should include meaningful legend and labels.
-# It should also mention the Twitter account name of the requesting user.
-# When submitting your assignment, be sure to have at least three analyses tweeted out from your account (enlist the help of classmates, friends, or family, if necessary!).
-# Notable libraries used to complete this application include: Matplotlib, Pandas, Tweepy, TextBlob, and Seaborn.
-
-# In[1]:
-
-
 # Dependencies
 
 import pandas as pd
@@ -43,10 +20,6 @@ chirp = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
-
-# In[2]:
-
-
 def pull_tweets(account):
     '''
     INPUT: String: Twitter Account Name
@@ -66,10 +39,6 @@ def pull_tweets(account):
             counter -= 1
     df = pd.DataFrame(sentiments)
     return(df)
-
-
-# In[18]:
-
 
 def the_work(analyzed=[], last_check=None, own_account="GunmaKuma"):
     now = datetime.datetime.now()
@@ -91,7 +60,7 @@ def the_work(analyzed=[], last_check=None, own_account="GunmaKuma"):
                 plt.legend(loc=(1,.95))
                 plt.xlabel("Tweets Ago")
                 plt.ylabel("Tweet Polarity")
-                plt.xlim(-len(df["Ago"]) - 5, 5)
+                plt.xlim(-len(df["Ago"]) - (len(df["Ago"]) * 0.05), (len(df["Ago"] * 0.05)))
                 plt.ylim(-1.01, 1.01)
                 plt.title(f"Sentiment Analysis of Tweets ({str_now})")
                 plt.savefig(f"{second_at}.png")
@@ -103,10 +72,6 @@ def the_work(analyzed=[], last_check=None, own_account="GunmaKuma"):
             print("Something's up with twitter..." + e.reason)
         except:
             print("Nothing to do")
-
-
-# In[ ]:
-
 
 analyzed = []
 while True:
