@@ -32,10 +32,11 @@ import seaborn as sns
 import tweepy
 import time
 import datetime
+import os
 
 # Authentication
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(os.environ["consumer_key"], os.environ["consumer_secret"])
+auth.set_access_token(os.environ["access_token"], os.environ["access_token_secret"])
 chirp = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 # Deal with sentiments
