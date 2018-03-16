@@ -87,11 +87,11 @@ sentiment_df.head(1) # Check it out
     <tr>
       <th>0</th>
       <td>BBC</td>
-      <td>-0.6808</td>
-      <td>0.248</td>
-      <td>0.752</td>
-      <td>True</td>
+      <td>0.4404</td>
       <td>0.0</td>
+      <td>0.847</td>
+      <td>True</td>
+      <td>0.153</td>
     </tr>
   </tbody>
 </table>
@@ -200,3 +200,8 @@ plt.show()
 
 ![png](output_12_0.png)
 
+
+
+```python
+sentiment_df.to_csv("sentiments.csv", encoding="utf-8")
+```
