@@ -32,7 +32,9 @@ import time
 import datetime
 
 # Authentication
-from secrets import chirp
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+chirp = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 # Deal with sentiments
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
