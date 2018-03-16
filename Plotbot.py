@@ -60,7 +60,7 @@ def the_work(analyzed=[], last_check=None, own_account="GunmaKuma"):
                 plt.legend(loc=(1,.95))
                 plt.xlabel("Tweets Ago")
                 plt.ylabel("Tweet Polarity")
-                plt.xlim(-len(df["Ago"]) - (len(df["Ago"]) * 0.05), (len(df["Ago"] * 0.05)))
+                plt.xlim(-len(df["Ago"]) - (len(df["Ago"]) * 0.01), (len(df["Ago"] * 0.01)))
                 plt.ylim(-1.01, 1.01)
                 plt.title(f"Sentiment Analysis of Tweets ({str_now})")
                 plt.savefig(f"{second_at}.png")

@@ -4,9 +4,9 @@
 
 1) Only CBS and BBC are positive, most American news outlets are slightly negative overall on twitter.
 
-2) There are a lot of tweets with 0 sentiment value as well
+2) There are a lot of tweets with 0 sentiment value as well, advertisements and images perhaps?
 
-3) In general, news tweets seem to have been positive recently.
+3) In general, news tweets tend to be slightly more positive (.16 + .45) .61 > .58 (.12 + .31 + .15).
 
 ## Dependencies
 
@@ -52,6 +52,8 @@ for account in request_list: # Looping through each twitter account we want
             })
 
 now = datetime.datetime.now() # What time is it?  For graph labels
+now = str(now)
+now = now[:10]
 ```
 
 ### Convert to DataFrame
@@ -117,7 +119,7 @@ plt.scatter(x_axis, NYT_df["Compound"], color="yellow", edgecolor = "black", mar
 # Other plotty fun
 plt.xlabel("Tweets Ago")
 plt.ylabel("Tweet Polarity")
-plt.title(f"Sentiment Analysis of Media Tweets {now}")
+plt.title(f"Sentiment Analysis of Media Tweets ({now})")
 plt.legend(loc=(1,0))
 plt.grid(True)
 plt.xlim(-5, 145)
@@ -189,7 +191,7 @@ ax.set_xticks(x_axis)
 ax.set_xticklabels(sentiment_dict.keys())
 ax.set_xlabel("")
 ax.set_ylabel("Tweet Polarity")
-fig.suptitle("Overall Media Sentiment based on Twitter (03/14/2018)")
+fig.suptitle(f"Overall Media Sentiment based on Twitter ({now})")
 ax.set_xlim(-0.51,4.51)
 
 # Save and show
